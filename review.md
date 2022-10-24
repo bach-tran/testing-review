@@ -1,0 +1,608 @@
+# Review
+
+## HTML + CSS
+- HTML
+    - HyperText Markup Language
+    - Current version is HTML5
+        - `<!DOCTYPE html>` used to define that a particular document is HTML5
+    - Defines the structure of a webpage
+    - Consists of HTML elements
+        - Elements are defined using tags
+            - ex. `<tag name></tag name>`
+    - Two types of tags
+        - Non self-closing tags
+            - Opening tag
+            - Closing tag
+        - Self-closing tags
+            - `<img src="..." />`
+    - HTML attributes
+        - Key-value pair
+        - Defines the metadata for a particular HTML element
+        - Global attributes
+            - `class`
+                - multiple elements can have the same class value
+            - `id`
+                - only one element on the page can have a particular id value
+                - id should serve as a unique identifier of an element
+            - `style`: inline CSS styling
+        - Other attributes
+            - `src`
+            - `rel`
+            - `name`
+            - `for`
+            - etc.
+    - Common HTML elements
+        - Heading
+            - `h1` through `h6`
+        - Paragraph
+            - `p`
+        - Image
+            - `img`
+        - Boilerplate elements
+            - `html`
+            - `body`
+            - `head`
+        - General elements
+            - `div`
+                - generic block-level elements
+            - `span`
+                - generic inline elements
+    - Block element
+        - An element that takes up the entire width of the parent's content space
+    - Inline element
+        - An element that only takes up as much space as is necessary
+    - Semantic v. Nonsemantic elements
+        - Semantic element: clearly communicates its meaning to the browser and developers reading the HTML
+            - `article`
+            - `aside`
+            - `details`
+            - `footer`
+            - `header`
+            - `main`
+            - `nav`
+            - `section`
+            - Are typically block level elements that behave the same as a div
+        - Non-semantic elements: do not clearly communicate what an element's purpose is
+            - `div`
+            - `span`
+- CSS
+    - Cascading stylesheets
+    - Way to style a webpage
+    - Ways to include CSS
+        - Inline
+            - style attribute of an HTML element
+            - `<p style="color: red;">`
+        - Internal
+            - `<style></style>`: typically placed in the `head` element
+            - CSS is written the same way as it would be in an external CSS file
+        - External
+            - External .css file
+            - `<link rel="stylesheet" href="mycssfile.css" />`
+    - Syntax
+        - `#my-id p { color: red; background-color: blue; }`
+            - `<selector> { <css property>:<css value>; <css property 2>:<css value 2>; }`
+        - Consists of "declarations"
+            - `<css property>:<css value>`
+        - The curly braces `{}` is a declaration block
+        - `#my-id p` is an example of a combination selector
+            - descendant selector
+            - "select p elements that are children/grandchildren, etc. of an element with an id of my-id"
+    - Selectors
+        - `*`: universal selector
+        - `#id`: id selector
+        - `.class`: class selector
+        - `div p`: descendant selector
+    - Precedence/priority (highest to lowest)
+        - inline (style attribute)
+        - #id
+        - .class
+        - tag name
+        - universal
+    - CSS inheritance
+        - Some properties are inherited from parent elements, but not all
+        - Typically properties related to text (such as font size, color, etc.) are inherited
+    - CSS Box model
+        - Content
+            - The actual content itself
+                - Text
+                - Child elements
+        - Padding
+            - Space between the content and the border
+        - Border
+            - The section that demarcates where an element "ends"
+        - Margin
+            - The space between the element and other elements
+        - Note: Content + padding make up what is known as a "fill-area", which is an area where the background color and background images are applied
+
+## Testing Concepts
+- Software testing: ensuring that software is working as expected
+- Testing in its simplest form is something you do "by hand" (no programming required)
+- However, in modern practices, we will automate test cases to save time
+    - Normally, technologies such as Selenium are utilized to help us automate the test cases
+    - Selenium automates actions in a web browser
+- Testing principles/mindset
+    - Test software to find defects
+        - The whole purpose of testing is to actually find defects
+        - We want to be made aware of issues with the software so that those issues can be fixed
+    - 100% bug free is impossible
+        - bug = defect
+        - We should never be 100% certain that something is 100% working or 100% bug free
+        - It just means we have not found a bug yet
+    - Exhaustive testing is impossible
+        - exhaustive testing = testing every possible combination of inputs into a system
+        - not feasible due to the incredibly large number of combinations that would likely arise in a non-trivial feature
+        - instead, be smart with what test cases are being developed and used
+            - testing technqiues: equivalence partitioning, boundary value analysis, decision tables, state transition diagrams
+    - Defects tend to cluster
+        - 80% of the defects are found in 20% of the modules in an application
+        - Once you find a defect in a particular module, you're likely to find other defects as well
+    - Early testing is important
+        - Defects/mistakes/errors found later in the software development lifecycle are more expensive to fix
+        - Finding defects/mistakes/errors earlier on (such as during development of requirements) is a lot easier to fix than when you have already gotten all the way to the testing phase
+        - Avoid "snowballing" of mistakes
+    - Absence of error fallacy
+        - Even if software is 99% bug free, it doesn't mean it is usable
+        - We need to always make sure that the software is meeting the needs of the business/customer
+        - Verification v. validation
+            - Verification: are we building the correct product?
+            - Validation (testing): are we building the product correctly?
+- Software testing lifecycle (STLC)
+    1. Requirements analysis phase
+        - Software requirements such as user stories as well as design documents are analyzed by the testing team to give them a better understand of what needs to be tested
+        - Testing team may communicate with business analysts, developers, tech leads, architects, etc. to better understand the application and requirements
+        - Requirements Traceability Matrix (RTM) is created
+            - A document that contains links between test cases and requirements
+            - Provides a way of tracing waht a particular test case is meant to be testing
+            - No test cases yet in this phase, but we list out what requirements there are in the RTM
+        - Output
+            - RTM
+    2. Test planning phase
+        - Create an overview of what needs to be done in the testing project
+            - Effort and cost are estimated
+            - Tools to be used are specified
+            - Roles and responsibilities of team members are defined
+            - Risks that may arise are addressed with plans on what to do if they occur
+            - Identification of what features are to be tested/not tested
+        - A test plan document is created
+        - Normally, a senior QA manager is responsible for creating this document and/or signing off on the document
+        - Output
+            - Test plan
+    3. Test case development phase
+        - Test cases (manual) + test scripts (automated) are created or reworked
+        - Test data is prepared
+            - test data = sample data to be used while testing the application in a test environment
+        - Output
+            - Test cases/test scripts
+            - Test data
+            - Updated RTM that contains links between the test cases and the appropriate requirement
+    4. Test environment setup phase
+        - Often done in parallel with the test case development phase
+        - Servers, databases, the tester's computer, etc. are prepared
+        - Application is deployed to the test environment along with test data
+        - **Smoke testing** is performed to make sure that the deployed build (deployment to the test environment) is stable enough for further testing
+        - Output
+            - Test environment
+    5. Test execution phase
+        - Testing is performed in accordance to the test plan + test cases that were developed
+        - If any test cases fail, defect reports are created and reported to the developers to be fixed
+            - When a developer fixes a defect, a tester must re-test to make sure the defect is in fact fixed
+        - Output
+            - RTM updated w/ executions status (whether test case was executed or not)
+            - Test cases are updated w/ results (passed/failed)
+            - Defect reports
+    6. Test cycle closure phase
+        - Testing team meets and discusses + analyzes results of testing
+        - Metrics
+            - Cost
+            - Amount of time taken
+            - Test coverage (what % of features were tested, which were not tested, etc.?)
+            - Test results (% passing, % failing, % pending, #s, breakdown by feature)
+        - Test results can be analyzed to determine the distribution of defects by feature
+        - Test closure report/test summary report is generated
+        - Strategies are identified to be implemented to remove/reduce bottlenecks + improve processes for the next time
+        - Output
+            - Test summary report
+- Test documents
+    - Test plan document
+        - Overview of the testing process
+    - Requirements traceability matrix (RTM)
+        - Trace test case to requirement being tested
+    - Test case design document
+        - Contains your test cases
+    - Defect report document
+        - Contains the defect reports
+        - Nowaday teams will use tools such as **Jira** for documenting defects
+    - Test summary report
+        - Summary at the end of testing
+- Defect Lifecycle
+    - The defect lifecycle pertains to the life of a defect report once it is created
+        1. Defect report is created
+        2. Defect report is assigned to a developer (so that they can fix the defect)
+        3. Developer starts analyzing and fixing the defect
+        4. Developer marks the defect as fixed
+        5. The tester re-tests to make sure the defect is actually fixed
+            - If defect is not fixed, go to back to step 2
+            - If defect is fixed, move to next step
+        6. Defect is marked as closed
+- Defect report
+    - Information
+        - Defect ID
+        - Description
+        - Steps to reproduce defect
+        - Test case ID
+        - Expected result
+        - Actual result
+        - Severity
+        - Priority
+        - Reporter
+        - Assigned to
+        - Status
+    - Statuses
+        - NEW: ticket is created
+        - OPEN: ticket is assigned to a developer to be fixed
+        - IN PROGRESS: developer is currently fixing the bug
+        - FIXED: developer believes bug is fixed
+        - RE-TESTING: tester is in process of re-testing to make sure defect is actually fixed
+        - CLOSED: defect is closed
+    - Severity v. Priority
+        - Severity: how much of an impact a defect has on the actual functioning of the feature
+            - Cosmetic: functionality is NOT impacted, but appearance is strange of the app
+            - Moderate: feature is partially broekn, not fully
+            - Major: a feature that is broken that is not inhibiting other features from working
+            - Critical: a feature that is broken that inhibits users from being able to use other features
+                - ex. Login (if you can't login, then there's a bunch of things you cannot do)
+        - Priority: based around a business's priorities on what needs to be fixed first
+            - Oftentimes, priority is correlated with severity, but not always
+            - Low
+            - Medium
+            - High
+        - Examples
+            - Users cannot log in
+                - CRITICAL severity
+                - High priority
+            - Login error message is not a generic error message
+                - Cosmetic severity
+                - High priority
+            - Company Logo on the homepage is incorrect
+                - Cosmetic severity
+                - High priority
+            - About us page text font is incorrect
+                - Cosmetic severity
+                - Low priority
+            - Admin homepage is not accessible
+                - Critical severity
+                - Medium priority
+            - Customer homepage is not accessible
+                - Critical severity
+                - High priority
+            - A user can toggle from light mode to dark mode, but when they try to toggle back, it doesn't work
+                - Moderate severity
+                - Medium priority
+- Test Cases
+    - A test case is a set of actions to be performed to elicit a result
+        - The actual result is compared against what is to be expected as a result (expected is based on the application requirements)
+    - Actual == expected -> PASSING
+    - Actual != expected -> FAILING
+    - Test case information
+        - Test Case ID
+        - Test Case Description
+        - Test Steps
+        - Test Data
+        - Expected Results
+        - Actual Results
+        - PASS/FAIL
+    - Test case creation
+        - Analyze requirements
+        - Brainstorming (creation of test scenarios)
+            - Test scenario: a simple 1 line statement about what we're going to be doing for that test case
+            - ex. `valid credentials`
+        - Test case will be created based off of the test scenario in the brainstorming phase
+        - (Optional) we can take the test case and automate it by writing some code (Selenium + TestNG)
+- Testing techniques
+    - Equivalence partitioning
+        - Splitting up input data into different intervals along a continuum of "valid" inputs
+            - ex. registration: username needs to be between 6 and 20 characters
+                - 8 different test cases (6 characters, 8, 10, 12, 14, 16, 18, 20)
+    - Boundary value analysis
+        - Testing inputs at the boundaries (both invalid and valid inputs)
+            - ex. registration: username needs to be between 6 and 20 characters
+                - 0, 5, 6, 7 (lower boundary)
+                - 19, 20, 21, 100 (upper boundary)
+    - Decision tables
+        - Mapping input conditions with expected result
+        - ex. Login
+            - Valid username, invalid password -> failed login
+            - Valid username, valid password -> successful login
+            - etc.
+    - State transition diagrams
+        - Helps in keeping track of the transition through different possible states and the results that could occur within each state
+        - ex. if you log in 3 times with an invalid password, then account will be locked out
+        - 1st attempt, valid username, valid password (successfully login)
+        - 1st attempt, valid username, invalid password, 2nd attempt valid password (successfully login)
+        - 1st attempt, valid username, invalid password, 2nd attempt, invalid password, 3rd attempt, valid password (successfully login)
+        - 1st attempt, valid username, invalid password, 2nd attempt, invalid password, 3rd attempt, invalid password (locked out)
+- Types of testing
+    - Non-functional testing
+        - Testing the non-functional aspects of the application (not the actual behaviors of the application)
+        - Security testing (testing to see how secure an application is to common attacks)
+        - Performance testing (testing to see how fast an application is)
+            - Load testing: simulate traffic to a server and seeing how fast it can serve the requests
+                - JMeter, etc. are used for performance testing
+    - Functional testing
+        - Testing the actual behaviors of the application
+        - Testing pyramid levels
+            - Unit testing
+                - Testing individual methods of an application's code in isolation
+                - Even if a method calls another method, we isolate that single method by "mocking" the other method
+                - Done by developers (for sure)
+            - Integration testing
+                - Testing methods/modules of an application's code "linked" together
+                - Typically performed by developers and/or testers (depending on what technologies/tools are being used)
+            - E2E testing
+                - Test an application from the perspective of the end-user/customer
+                - If you have fullstack application, then the user/customer interacts with the webpages
+                - In E2E testing, we interact directly with the frontend of the application (which will be what communicates with the backend)
+                - Frontend + backend must be working + integrated together
+            - User acceptance testing (UAT)
+                - The actual users/customers utilize the application to determine if the application is currently acceptable or not
+                - Beta + alpha testing
+                - Alpha testing: in-house testing where the customer is invited to the actual premises to use the application and give feedback
+                - Beta testing: application is released to the wider public so that customers on a mass scale can use it early and report back any issues/provide feedback
+        - Positive and negative testing
+            - Not the same thing as PASS/FAIL
+            - Positive: testing whether the applcation behaves correctly when the user does something correctly
+                - ex. logging in with valid credentials
+                    - If you're able to log in (PASS)
+                    - If you're not able to log in (FAIL)
+            - Negative: testing whether the application behaves correctly when a user does something "incorrectly"
+                - ex. Logging in with invalid credentials
+                    - If you get an error message (PASS)
+                    - If you don't get an error message/get the wrong error message/are still able to log in (FAIL)
+        - Smoke testing
+            - "if there's smoke, there's fire"
+            - Testing the critical functionalities of an application to make sure that the build is stable enough for further testing and/or if the deployment of the application was successful or not
+        - Sanity testing
+            - sanity testing takes the place of smoke testing if we are already confident (after many builds/iterations) that the critical functionalities are working and in-place
+            - testing the new functionalities that were added to see if they're working or not
+        - Smoke testing v. sanity testing
+            - Both are "gatekeepers" to whether we should do further extensive testing
+            - If our smoke tests fail, then we definitely should not do any additional testing until the issues are resolved
+            - If our sanity tests fail, then that means our newly added functionality is not working, and there's no point in further testing this new build, since the purpose of the new build was to introduce the new functionality (which is clearly broken)
+        - Regression testing (extensive testing)
+            - Whenever we introduce new functionalities/change existing functionalities, then we should perform regression testing to make sure those changes did not break any of the old functionality in our application
+            - Regression: make sure the application did not "regress" (become worse)
+            - VERY VERY important
+            - Time consuming because we're running all of the old test cases that already exist for the application
+            - It's best to automate as many test cases as possible so that we can save on labor costs/time
+        - Blackbox v. Whitebox testing
+            - Blackbox testing: testing an application where we DO NOT need to have knowledge about the internal workings (code/architecture) of the application
+                - UAT
+                - E2E testing
+            - Whitebox testing: testing an application where we do need to know the internal workings of the application
+                - Unit testing
+            - Gray area
+                - Integration testing
+                    - Might write integration tests that interact directly with the code in the project (whitebox)
+                    - You might use an API testing tool such as Postman or SoapUI that sends a request to the backend server (blackbox)
+        - Exhaustive testing
+            - Not feasible
+            - Testing every possible combination of inputs
+            - For non-trivial features, there could be an enormous # of combinations
+            - Employ testing techniques to reduce the number of test cases while still being focused on testing what really matters
+        - Manual v. Automation testing
+            - Manual testing: human sits down at computer and performs actions manually and checks manually on the results
+                - Sometimes manual testing MUST be done (somethign might be too hard to automate)
+            - Automation testing: Human writes automated test scripts using a programming language that a computer can subsequently execute over and over to save time, effort, and $$$$
+- Why do we automate test cases?
+    - Regression testing: when performing regression testing, we will execute old test cases that already exist for an application (to make sure the old features did not break when adding/modifying the application)
+        - Time consuming
+    - If we automate the test cases, with a push of a button, a computer can go and run the test cases for us
+    - By having an automated test suite, regression testing teakes a lot less time and less effort
+
+## Selenium
+- Selenium is a tool for automating browsers
+    - We can automate actions that a human would normally be taking
+        - typing in text to a textbox
+        - clicking on a button or a link
+        - reading text from an element
+- Ecosystem for Selenium
+    - Selenium WebDriver
+        - An API that contains classes and interfaces that allow us to write code that will instruct a web browser what to do
+        - We in particular are using Selenium WebDriver
+    - Selenium IDE
+        - GUI based tool that allows us to record and playback actions that were performed
+    - Selenium Grid
+        - Distribute and run automation scripts on multiple machines that are controlled from one central machine
+- Selenium Usage
+    1. Download a webdriver executable to the computer (chromedriver.exe)
+    2. Create a Java project
+        - `System.setProperty("webdriver.chrome.driver", "D:/chromdriver.exe")`
+        - `WebDriver driver = new ChromeDriver()`
+        - ...
+    3. Locate elements on the page using `driver.findElement(...) or driver.findElements(...)`
+    4. Interact with those elements using for example `.sendKeys()` or `.click()`
+    5. Quit the webdriver (`driver.quit()`)
+- WebDriverManager (Boni Garcia)
+    - This is an optional dependency that allows for us to write a single line of code that will go and download + configure the webdriver manually for us
+    - It doesn't matter what OS we're using, it will determine the appropriate webdriver
+    - `WebDriverManager.chromedriver().setup()`
+    - `WebDriver driver = new ChromeDriver()`
+- .close() v. .quit()
+    - close() just closes the window that's open but does not quit the webdriver
+    - quit() will quit the webdriver and close any windows associated with that webdriver
+- WebDriver interface
+    - Used to represent a WebDriver object
+    - A connection with the webdriver executable that controls the web browser
+    - Primary methods
+        - .get(url): go to a particular webpage
+            - driver.navigate().to("...")
+        - driver.navigate().back()
+        - driver.navigate().forward()
+        - driver.navigate().refresh()
+        - .quit(): quit the webdriver
+        - .close(): close the window that is open
+        - .findElement(By locator): grab a WebElement that is the first one that matches a particular condition (top to bottom on the page, it will grab the top element)
+        - .findElements(By locator): return a List of WebElement objects that match a particular condition (from top to bottom, indices 0 to ...)
+- WebElement interface
+    - Used to represent elements on a webpage
+    - Each WebElement object is a particular element we may be able to interact with
+    - `.sendKeys(...)`
+    - `.click()`
+- Selenium Locators
+    - VERY VERY important to know and remember
+    - This is how you actually locate elements on a webpage
+    - `By` class
+    - .findElement(By locator)
+    - .findElements(By locator)
+    - By.id("...")
+    - By.className("...")
+    - By.tagName("...")
+    - By.linkText("...")
+        - ex. <a href="...">My Link</a>
+        - By.linkText("My Link")
+    - By.partialLinkText("...")
+        - ex. <a href="...">My Link</a>
+        - By.linkText("y Li")
+    - By.name("...")
+    - By.cssSelector("...")
+        - Utilize CSS selectors to locate elements
+    - By.xpath("...")
+        - Utilize xpath to locate elements
+    - css selectors v. xpath
+        - Both of them provide more flexibility than the other locators
+        - But xpath is even more flexible than css selectors
+    - XPath
+        - notation that is similar to how filepaths work on a computer
+        - parent nodes -> child nodes
+        - 2 types of xpath
+            - Relative xpath
+                 - `//`: allows for us to "skip" through the HTML document structure
+                 - ex. `//*[@id='my-id']/p`
+                    - Locate all p elements that are direct children of an element with an id of my-id
+            - Absolute xpath
+                - xpath where we start at the root node and specifically work our way down
+                - `/html/body/div[1]/div[1]/p`
+            - Relative xpath is recommended over absolute xpath because relative xpath is less specific about the required structure
+            - Absolute xpath is more "brittle" than relative xpath
+                - If a frontend developer shifts elements around on a page, the absolute xpath would be more likely to break than the relative xpath
+        - functions
+            - text()
+            - last()
+            - contains(..., ...)
+        - axes
+            - /following-sibling::*
+            - /preceding-sibling::*
+            - /parent::*
+        - Position
+            - //div[3]
+            - Position starts at 1 and goes upwards
+- TestNG
+    - Stands for Test NextGeneration
+    - It's a testing framework similar to JUnit/Jupiter for organizing, structuring, and executing automated tests
+    - TestNG provides the ability to have .xml configuration and greater organization of tests than JUnit does
+    - TestNG hierarchy
+        - Suite
+            - Test (test categories)
+                - `<test name="Web Browser tests"></test>` (Selenium tests)
+                - `<test name="Mobile app tests"></test>` (Appium tests)
+                - Class
+                    - Method (test cases)
+    - Configuration
+        - A test suite can be configured using a .xml file
+        - If we have multiple test suites, we can have multiple .xml files
+        - Normally by convention, if we only have 1 test suite, we will have a single .xml file called testng.xml
+    - Annotations
+        - @Test: used to mark a method as a test method / test case
+            - If you use cucumber, you DO NOT need to have @Test annotated methods (since the feature file scenarios will be the test cases instead)
+        - @BeforeSuite: runs before the test suite
+        - @BeforeTest: runs before a test category
+        - @BeforeClass: runs before each test class
+        - @BeforeMethod: runs before each test case
+        - @AfterMethod: runs after each test case
+        - @AfterClass: runs after each test class
+        - @AfterTest: runs after a test category
+        - @AfterSuite: runs after the test suite
+- Cucumber
+    - A framework for implementing behavior driven development
+    - Behavior driven development (BDD)
+        - An extension of test driven development
+            - TDD the process of creating test cases from the requirements and then building the application around getting those test cases to pass
+            - The advantage to TDD is that we can ensure that development is truly focused around the application requirements
+                - This assumes that test cases are actually developed around the requirements themselves
+        - BDD adds to TDD the idea of easily bridging the gap between non-technical and technical members of a team
+            - Requirements are described intuitively in terms of how the application is supposed to behave when a user performs some actions
+            - The non-technical specification of the requirements in terms of behaviors is understandable by both the business analysts/product manager as well as testers + developers
+            - This keeps everyone on the same page
+            - Requirements (laid out in feature files)
+            - Test autiomation is written in step implementation files
+            - Actual application is written and must pass the test cases
+    - Made up of 3 different types of files:
+        - Feature files
+            - Written in Gherkin
+                - Domain-specific language (not a programming language)
+            - The actual test cases themselves
+            - A scenario = a test case
+            - A scenario is made up of many different steps
+                - Step keywords are used to define a step
+                    - Given: used to arrange the precondition
+                        - ex. Given I am at the login page
+                    - When: used to perform an action
+                        - ex. When I type in valid credentials
+                    - Then: used to assert whether an actual result == expected
+                    result
+                        - ex. Then I should be redirected to the user homepage
+                    - And
+                        - Used to break a primary keyword (Given, When, Then) into smaller chunks
+                    - But
+                        - Used to break a primary keyword (Given, When, Then) into smaller chunks
+        - Step implementation files
+            - Classes that contain actual Java code that correspond with a particular step
+            - The methods in the class are annotated with @Given("..."), @When("..."), @Then("...")
+                - The text that goes in the annotations needs to EXACTLY match the steps declared in the feature file
+            - Step implementation methods can be re-used across many different scenarios in a feature file
+                - Saves us from code duplication
+                - Promotes re-usability
+        - Test Runner class(es)
+            - A class that integrates between a testing framework such as TestNG and the feature files/step implementation files
+            - It's how we actually have TestNG treat a scenario as a test case (for test result reporting purposes)
+    - Cucumber parameterization
+        - Inline parameters
+            - Parameters passed in directly in the step
+            - `When I type in a username of "user123"`
+        - Scenario Outline
+            - Have an outline for a bunch of different scenarios that just utilize different data for each scenario
+            - The data is represented into a table
+            - `When I type in a username of <un>`
+            - `And I type in a password of <pw>`
+            - | un | pw |
+            - | user123 | pass123 |
+            - | john_doe | testing123 |
+- Software Development Lifecycle (SDLC)
+    1. Planning phase: determining what we want to do for the project
+    2. Requirements phase: define specific requirements for how the application should be built
+    3. Design phase: create design documentation on how the application is be architected, etc.
+    4. Implementation phase: actual code is written for the application
+    5. Testing phase: the application that was written is then tested to make sure it works properly
+    6. Deployment phase: application is deployed to "production"
+    7. Maintenance phase: responding to customer inquiries/support + making sure to fix any bugs that the customer finds + making sure the application is up and running reliably
+- Maven build lifecycle
+    - Maven is both a dependency manager and a build tool
+    - Dependency: an external library that our project depends on
+        - Selenium API
+        - TestNG API
+        - Javalin API (building backend applications)
+        - Postgres Database driver
+    - Build tool: We can build a project (compile + run tests + package the application into a .jar file)
+    - Build lifecycle (**backend application**)
+        - Validate: check to make sure the pom.xml is correct and all dependencies are available
+        - Compile: the application code is compiled into bytecode
+        - Test: unit tests + integration tests are executed for the application
+        - Package: the project is packaged into a .jar file for deployment
+    - Build lifecycle (**E2E test framework (using selenium + cucumber + TestNG)**)
+        - Validate: check to make sure the pom.xml is correct and all dependencies are available
+        - Compile: the test code is compiled into bytecode
+        - Test: where E2E tests are executed
+    - You can invoke any phase in the build lifecycle by utilizing `mvn <phase name>`
+        - ex. if you type `mvn test`, then you will run the validate, compile, and test phases
+        - ex. if you type `mvn package`, then you will run the validate, compile, test, and package phases
+        - ex. if you type `mvn compile`, then you will run the vlidate + compile phases
